@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Winter Blues</string>
+    <string name="info_title">The Winter Blues</string>
+    <string name="info_paragraph">
+        Hey buddy.  We\'ve been having a blue winter this year. I think we
+    always feel better when we do a good job of remembering all the good things in our life. So,
+    this is the "Break the Winter Blues" app, the "Fight Back Against the Winter" app, the
+    "Winter Won\'t Get the Best of Us" app. Every day, when you open it, this app will check to see
+    what I\'ve got in store for you.  Press the dots below to explore.
+    Either a video, some upbeat song, a photo, or even presents scattered around. Enjoy!</string>
+</resources>
