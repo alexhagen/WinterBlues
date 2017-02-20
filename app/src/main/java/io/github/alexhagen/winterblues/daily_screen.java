@@ -23,6 +23,8 @@ import android.widget.VideoView;
 import com.github.rubensousa.previewseekbar.PreviewSeekBar;
 import com.github.rubensousa.previewseekbar.PreviewSeekBarLayout;
 import com.mancj.slideup.SlideUp;
+import com.squareup.picasso.Picasso;
+import com.tapadoo.alerter.Alerter;
 import com.thin.downloadmanager.DefaultRetryPolicy;
 import com.thin.downloadmanager.DownloadRequest;
 import com.thin.downloadmanager.DownloadStatusListener;
@@ -64,6 +66,7 @@ public class daily_screen extends AppCompatActivity {
     Context mContext;
     VideoView video;
     MediaController videocontroller;
+    Alerter downloadalerter;
     int toastduration;
 
     private void readpathfile(File fin, CircleButton cb, int i) throws IOException {
@@ -123,8 +126,9 @@ public class daily_screen extends AppCompatActivity {
 
                     @Override
                     public void onProgress(int id, long totalBytes, long downlaodedBytes, int progress) {
-                        pbar.setMax((int) totalBytes);
-                        pbar.setProgress((int) downlaodedBytes);
+                        //pbar.setMax((int) totalBytes);
+                        //pbar.setProgress((int) downlaodedBytes);
+                        downloadalerter.setText(String.format("%d%%", progress));
                     }
                 });
         downloadManager.add(downloadRequest);
@@ -150,9 +154,14 @@ public class daily_screen extends AppCompatActivity {
                         }
                     });
                     media_bkg.setImageResource(R.drawable.bkg1);
+                    //Picasso.with(mContext).load(R.drawable.bkg2).into(media_bkg);
                     playpause.setVisibility(View.VISIBLE);
-                } else if (fname.equals("jpg")){
+                } else if (fname.equals("jpg")) {
                     media_bkg.setImageURI(destinationUri);
+                    //Picasso.with(mContext).load(destinationUri).into(media_bkg);
+                } else if (fname.equals("png")) {
+                    media_bkg.setImageURI(destinationUri);
+                    //Picasso.with(mContext).load(destinationUri).into(media_bkg);
                 } else if (fname.equals("mp4")){
                     media_bkg.setVisibility(View.GONE);
                     video.setVisibility(View.VISIBLE);
@@ -195,8 +204,9 @@ public class daily_screen extends AppCompatActivity {
                     public void onDownloadComplete(int id) {
                         setbuttonup(cb, fname, destinationUri, i);
                         downloads.poll();
+                        downloadalerter.setDuration(2);
                         if (downloads.peek() == null) {
-                            pbar.setVisibility(View.INVISIBLE);
+                            //pbar.setVisibility(View.INVISIBLE);
                             Toast toast = Toast.makeText(mContext, "All Downloads Finished!", toastduration);
                             toast.show();
                         }
@@ -209,8 +219,9 @@ public class daily_screen extends AppCompatActivity {
 
                     @Override
                     public void onProgress(int id, long totalBytes, long downlaodedBytes, int progress) {
-                        pbar.setMax((int) totalBytes);
-                        pbar.setProgress((int) downlaodedBytes);
+                        //pbar.setMax((int) totalBytes);
+                        //pbar.setProgress((int) downlaodedBytes);
+                        downloadalerter.setText(String.format("%d%%", progress));
                     }
                 });
         int status = downloadManager.add(downloadRequest);
@@ -295,6 +306,7 @@ public class daily_screen extends AppCompatActivity {
         playpause = (LinearLayout) findViewById(R.id.playpause);
         neededdays = new LinkedList<Integer>();
         pbar = (ProgressBar) findViewById(R.id.downloadprogress);
+        downloadalerter = Alerter.create(this).setTitle("Downloading").setText("0%").setBackgroundColor(R.color.colorPrimaryDark);
         video = (VideoView) findViewById(R.id.videoView);
         video.setFocusable(true);
         toastduration = Toast.LENGTH_SHORT;
@@ -330,6 +342,7 @@ public class daily_screen extends AppCompatActivity {
         Integer daytodownload;
         downloads = new LinkedList<Integer>();
         downloadManager = new ThinDownloadManager();
+        downloadalerter.show();
         while((daytodownload = neededdays.poll()) != null){
             String fname = daystrings[daytodownload];
             CircleButton cb = daybuttons[daytodownload];

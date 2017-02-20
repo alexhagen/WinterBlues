@@ -23,7 +23,8 @@
             android:layout_height="50dp"
             android:indeterminate="false"
             android:id="@+id/downloadprogress"
-            android:layout_alignParentTop="true"/>
+            android:layout_alignParentTop="true"
+            android:visibility="gone" />
     </LinearLayout>
 
 
