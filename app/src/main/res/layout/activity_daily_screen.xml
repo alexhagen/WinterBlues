@@ -10,7 +10,11 @@
 
     <com.jetradarmobile.snowfall.SnowfallView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:id="@+id/snowfallview"
+        squint:snowflakesAlreadyFalling="false"
+        squint:snowflakeSpeedMax="0"
+        squint:snowflakeSpeedMin="0"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -226,7 +230,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/bkg1"
+                android:src="@drawable/bkg3"
                 android:id="@+id/media" />
 
 

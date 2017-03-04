@@ -22,8 +22,8 @@ import android.widget.VideoView;
 
 import com.github.rubensousa.previewseekbar.PreviewSeekBar;
 import com.github.rubensousa.previewseekbar.PreviewSeekBarLayout;
+import com.jetradarmobile.snowfall.SnowfallView;
 import com.mancj.slideup.SlideUp;
-import com.squareup.picasso.Picasso;
 import com.tapadoo.alerter.Alerter;
 import com.thin.downloadmanager.DefaultRetryPolicy;
 import com.thin.downloadmanager.DownloadRequest;
@@ -67,6 +67,7 @@ public class daily_screen extends AppCompatActivity {
     VideoView video;
     MediaController videocontroller;
     Alerter downloadalerter;
+    SnowfallView snowfall;
     int toastduration;
 
     private void readpathfile(File fin, CircleButton cb, int i) throws IOException {
@@ -153,7 +154,7 @@ public class daily_screen extends AppCompatActivity {
                             mixtapemedia.pause();
                         }
                     });
-                    media_bkg.setImageResource(R.drawable.bkg1);
+                    media_bkg.setImageResource(R.drawable.bkg3);
                     //Picasso.with(mContext).load(R.drawable.bkg2).into(media_bkg);
                     playpause.setVisibility(View.VISIBLE);
                 } else if (fname.equals("jpg")) {
@@ -282,13 +283,15 @@ public class daily_screen extends AppCompatActivity {
         // get the day
 
         Calendar c = Calendar.getInstance();
-
         SimpleDateFormat mnth = new SimpleDateFormat("MMMM", Locale.US);
         TextView month = (TextView) findViewById(R.id.month);
         month.setText(mnth.format(c.getTime()));
         SimpleDateFormat dy = new SimpleDateFormat("d");
         TextView date = (TextView) findViewById(R.id.date);
         date.setText(dy.format(c.getTime()));
+        if (month.getText() == "March") {
+
+        }
         daystrings = new String[7];
         media_paths = new String[7];
         paragraphs = new String[7];

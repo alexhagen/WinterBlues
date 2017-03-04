@@ -5,7 +5,7 @@
     </style>
     <style name="FullscreenTheme" parent="AppTheme">
         <item name="android:windowActionBar">false</item>
-        <item name="android:windowBackground">@drawable/bkg1</item>
+        <item name="android:windowBackground">@drawable/bkg3</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowTranslucentStatus">true</item>
